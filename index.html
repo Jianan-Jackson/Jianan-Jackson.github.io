@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CS180 Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            flex-wrap: wrap; 
+            height: 100vh; 
+        }
+        .container {
+            text-align: left;
+            width: 80%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            background: #fff; 
+            border-radius: 8px;
+        }
+        .image-container {
+            text-align: center;
+            width: 100%; 
+            height: 370px;
+        }
+        .header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333; 
+        }
+        p {
+            font-size: 14px; 
+            color: #666; 
+            margin: 10px 0; 
+        }
+        
+        img {
+            width: 400px; 
+            height: 350px; 
+            max-width: 500px; 
+            flex: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CS180 Project 1</h1>
+
+        <div>
+            <p class="header">Overview</p>
+            <p>The goal of this assignment is to take the digitized Prokudin-Gorskii glass plate images and, using image processing techniques, 
+                automatically produce a color image with as few visual artifacts as possible. In order to do this, you will need to extract the three color channel images, 
+                place them on top of each other, and align them so that they form a single RGB color image.
+            </p>
+        </div>
+
+        <div>
+            <p class="header">Single-Scale Approach (Brute Force)</p>
+            <p>
+                In this approach, I will use the brute force method to align the three images and use the sum of squared differences (SSD) to find the best alignment.
+                Also, I will search the range from -15 to 15 pixels in both x and y directions to find the best displacement (shifts 15 pixels in all directions).
+                Then, using the best alignment align the images and create the final color image. Another way to find the best displacement is to use the normalized cross-correlation (NCC) method.
+                But it is computationally expensive and takes more time than SSD. Therefore, I mainly used the SSD method in this project.
+            </p>
+            <div style="text-align: center;">
+                <img src="images/ssd.jpg" alt="SSD Method" style="width: 80%; height: auto;">
+            </div>
+            <div style="text-align: center;">
+                <img src="images/ncc.jpg" alt="NCC Method" style="width: 80%; height: auto;">
+            </div>
+        </div>
+
+        <div>
+            <p class="header">Multi-Scale Approach (Image Pyramids)</p>
+            <p>
+                The brute-force way to align the images is computationally expensive for large size files. It will probably take a few minutes to process the image, which is way slower compared with small size images. 
+                To reduce the time complexity, I will use the image pyramids method. Basically, I just decrease the size of the image by half and repeat the process until the image size is small enough to use the brute-force method.
+                Here, I chose to decrease the size of the image by half 4 times. So, the final image size will be 1/16 of the original image size. 
+                Then, I will use the brute-force method to align the images and create the final color image.
+            </p>
+        </div>
+
+        <div class="header">
+            Final Results
+            <p></p>
+        </div>
+
+        <div class="image-container">
+             <div class="img">
+                <img src="unprocessed_images/cathedral.jpg" alt="Unaligned Image" >
+                <img src="output_images/cathedral.jpg" alt="Aligned Image" >
+             </div>
+        </div>
+
+        <div class="image-container">
+             <div class="img">
+                <img src="unprocessed_images/church.jpg" alt="Aligned Image" >
+                <img src="output_images/church.jpg" alt="Aligned Image">
+             </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/emir.jpg" alt="Aligned Image" >
+               <img src="output_images/emir.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/harvesters.jpg" alt="Aligned Image" >
+               <img src="output_images/harvesters.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/icon.jpg" alt="Aligned Image" >
+               <img src="output_images/icon.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/lady.jpg" alt="Aligned Image" >
+               <img src="output_images/lady.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/melons.jpg" alt="Aligned Image" >
+               <img src="output_images/melons.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/monastery.jpg" alt="Aligned Image" >
+               <img src="output_images/monastery.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/onion_church.jpg" alt="Aligned Image" >
+               <img src="output_images/onion_church.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/sculpture.jpg" alt="Aligned Image" >
+               <img src="output_images/sculpture.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/self_portrait.jpg" alt="Aligned Image" >
+               <img src="output_images/self_portrait.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/three_generations.jpg" alt="Aligned Image" >
+               <img src="output_images/three_generations.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/tobolsk.jpg" alt="Aligned Image" >
+               <img src="output_images/tobolsk.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="img">
+               <img src="unprocessed_images/train.jpg" alt="Aligned Image" >
+               <img src="output_images/train.jpg" alt="Aligned Image">
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>
